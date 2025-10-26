@@ -102,13 +102,14 @@ class EDGEMAIL_Logger {
 		if ( false === $results ) {
 			$table_name_escaped = esc_sql( $table_name );
 			// Table name cannot be a placeholder in wpdb->prepare(), must be interpolated.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$results = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT * FROM {$table_name_escaped} ORDER BY sent_at DESC LIMIT %d",
 					$limit
 				)
 			);
+			// phpcs:enable
 
 			$results = $results ? $results : array();
 
@@ -138,13 +139,14 @@ class EDGEMAIL_Logger {
 		if ( false === $result ) {
 			$table_name_escaped = esc_sql( $table_name );
 			// Table name cannot be a placeholder in wpdb->prepare(), must be interpolated.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$result = $wpdb->get_row(
 				$wpdb->prepare(
 					"SELECT * FROM {$table_name_escaped} WHERE to_email = %s ORDER BY sent_at DESC LIMIT 1",
 					$admin_email
 				)
 			);
+			// phpcs:enable
 
 			$result = $result ? $result : false;
 

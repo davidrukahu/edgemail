@@ -101,6 +101,7 @@ class EDGEMAIL_Logger {
 
 		if ( false === $results ) {
 			$table_name_escaped = esc_sql( $table_name );
+			// Table name cannot be a placeholder in wpdb->prepare(), must be interpolated.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$results = $wpdb->get_results(
 				$wpdb->prepare(
@@ -136,6 +137,7 @@ class EDGEMAIL_Logger {
 
 		if ( false === $result ) {
 			$table_name_escaped = esc_sql( $table_name );
+			// Table name cannot be a placeholder in wpdb->prepare(), must be interpolated.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$result = $wpdb->get_row(
 				$wpdb->prepare(

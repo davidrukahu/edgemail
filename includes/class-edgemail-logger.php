@@ -96,15 +96,26 @@ class EDGEMAIL_Logger {
 
 		$limit = absint( $limit );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$results = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT * FROM {$table_name} ORDER BY sent_at DESC LIMIT %d",
-				$limit
-			)
-		);
+		$cache_key = 'edgemail_recent_logs_' . $limit;
+		$results   = wp_cache_get( $cache_key, 'edgemail' );
 
-		return $results ? $results : array();
+		if ( false === $results ) {
+			$table_name_escaped = esc_sql( $table_name );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$results = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT * FROM {$table_name_escaped} ORDER BY sent_at DESC LIMIT %d",
+					$limit
+				)
+			);
+
+			$results = $results ? $results : array();
+
+			// Cache for 5 minutes.
+			wp_cache_set( $cache_key, $results, 'edgemail', 300 );
+		}
+
+		return $results;
 	}
 
 	/**
@@ -119,14 +130,26 @@ class EDGEMAIL_Logger {
 
 		// Look for test emails (those sent to admin email).
 		$admin_email = get_option( 'admin_email' );
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$result      = $wpdb->get_row(
-			$wpdb->prepare(
-				"SELECT * FROM {$table_name} WHERE to_email = %s ORDER BY sent_at DESC LIMIT 1",
-				$admin_email
-			)
-		);
 
-		return $result ? $result : false;
+		$cache_key = 'edgemail_last_test_result';
+		$result    = wp_cache_get( $cache_key, 'edgemail' );
+
+		if ( false === $result ) {
+			$table_name_escaped = esc_sql( $table_name );
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$result = $wpdb->get_row(
+				$wpdb->prepare(
+					"SELECT * FROM {$table_name_escaped} WHERE to_email = %s ORDER BY sent_at DESC LIMIT 1",
+					$admin_email
+				)
+			);
+
+			$result = $result ? $result : false;
+
+			// Cache for 5 minutes.
+			wp_cache_set( $cache_key, $result, 'edgemail', 300 );
+		}
+
+		return $result;
 	}
 }

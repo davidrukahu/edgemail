@@ -33,7 +33,7 @@ This plugin is designed to work with Cloudflare's Email Service, announced in Se
 
 1. Upload the plugin to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to WooCommerce → EdgeMail (or EdgeMail in the sidebar)
+3. Go to Tools → EdgeMail in the WordPress admin
 4. Configure your Worker URL, API token, and default From fields
 5. Send a test email to verify your configuration
 
@@ -69,7 +69,7 @@ EdgeMail automatically falls back to the default WordPress email sending mechani
 
 = Can I use this without WooCommerce? =
 
-Yes! EdgeMail works on any WordPress installation. The settings page appears as a top-level menu if WooCommerce is not active.
+Yes! EdgeMail works on any WordPress installation. The settings page appears under Tools in the WordPress admin.
 
 = Do I need to create my own Cloudflare Worker? =
 
@@ -77,7 +77,7 @@ Yes, you'll need to create a Cloudflare Worker that receives the email payload a
 
 == Screenshots ==
 
-1. Settings page
+1. Settings page under Tools menu
 2. WooCommerce Status integration
 
 == Upgrade Notice ==

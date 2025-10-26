@@ -34,28 +34,15 @@ class EDGEMAIL_Settings {
 	 * Add settings page to admin menu.
 	 */
 	public function add_settings_page() {
-		// Check if WooCommerce is active.
-		if ( class_exists( 'WooCommerce' ) ) {
-			// Add as WooCommerce submenu.
-			add_submenu_page(
-				'woocommerce',
-				__( 'EdgeMail', 'edgemail' ),
-				__( 'EdgeMail', 'edgemail' ),
-				'manage_options',
-				'edgemail',
-				array( $this, 'render_settings_page' )
-			);
-		} else {
-			// Add as top-level menu.
-			add_menu_page(
-				__( 'EdgeMail', 'edgemail' ),
-				__( 'EdgeMail', 'edgemail' ),
-				'manage_options',
-				'edgemail',
-				array( $this, 'render_settings_page' ),
-				'dashicons-email-alt2'
-			);
-		}
+		// Add as Tools submenu.
+		add_submenu_page(
+			'tools.php',
+			__( 'EdgeMail', 'edgemail' ),
+			__( 'EdgeMail', 'edgemail' ),
+			'manage_options',
+			'edgemail',
+			array( $this, 'render_settings_page' )
+		);
 	}
 
 	/**
@@ -275,7 +262,7 @@ class EDGEMAIL_Settings {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_scripts( $hook ) {
-		if ( 'toplevel_page_edgemail' !== $hook && 'woocommerce_page_edgemail' !== $hook ) {
+		if ( 'tools_page_edgemail' !== $hook ) {
 			return;
 		}
 

@@ -21,7 +21,7 @@ EdgeMail intercepts WordPress outbound email (`wp_mail()`) and sends it via your
 1. Download or clone this repository
 2. Upload to your `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Go to **WooCommerce → EdgeMail** (or **EdgeMail** in the sidebar)
+4. Go to **Tools → EdgeMail** in the WordPress admin
 5. Configure your Worker URL, API token, and default From fields
 6. Send a test email to verify your configuration
 
@@ -52,7 +52,7 @@ EdgeMail automatically falls back to the default WordPress email sending mechani
 
 **Can I use this without WooCommerce?**
 
-Yes! EdgeMail works on any WordPress installation. The settings page appears as a top-level menu if WooCommerce is not active.
+Yes! EdgeMail works on any WordPress installation. The settings page appears under Tools in the WordPress admin.
 
 **Do I need to create my own Cloudflare Worker?**
 

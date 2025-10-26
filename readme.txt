@@ -1,6 +1,5 @@
 === EdgeMail ===
 Contributors: davidrukahu
-Donate link: https://github.com/davidrukahu/edgemail
 Tags: email, cloudflare, workers, transactional, woocommerce
 Requires at least: 5.7
 Tested up to: 6.8
@@ -84,3 +83,13 @@ Yes, you'll need to create a Cloudflare Worker that receives the email payload a
 
 = 1.0.0 =
 Initial release of EdgeMail plugin.
+
+== Privacy Policy ==
+
+This plugin may collect the following data:
+
+* Email delivery logs (recipient email addresses, subject lines, delivery status, timestamps) are stored in the database for troubleshooting and compliance purposes
+* Worker endpoint URL and API token are stored in wp_options for plugin functionality
+* No user data is sent to third parties except for email delivery through your configured Cloudflare Worker endpoint
+
+All data is stored locally on your WordPress installation. This plugin does not track users or send data to external analytics services.

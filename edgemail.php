@@ -5,7 +5,7 @@
  * Description: Replace WordPress transactional email with Cloudflare Worker endpoint integration
  * Version: 1.0.0
  * Author: DavidR
- * Author URI: https://github.com/davidrukahu/edgemail
+ * Author URI: https://github.com/davidrukahu
  * Text Domain: edgemail
  * Requires at least: 5.7
  * Requires PHP: 7.4

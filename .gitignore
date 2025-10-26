@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# WordPress
+node_modules/
+vendor/
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/blogs.dir/
+wp-content/plugins/hello.php
+wp-content/plugins/akismet/
+wp-content/themes/twenty*/
+
+# Plugin specific
+*.zip
